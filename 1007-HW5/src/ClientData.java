@@ -16,12 +16,12 @@ public class ClientData implements Serializable{
 	private String hostName;
 	private String ipAddress;
 	private int gameNo;
-	private int firstGameScore = -1;
-	private int secondGameScore = -1;
-	private int lastGameScore = -1;
-	private int firstOppGameScore = -1;
-	private int secondOppGameScore = -1;
-	private int lastOppGameScore = -1;
+	private int firstGameScore;
+	private int secondGameScore;
+	private int lastGameScore;
+	private int firstOppGameScore;
+	private int secondOppGameScore;
+	private int lastOppGameScore;
 	private Maze testMaze;
 	private MazeCreator testMazeCreator;
 	public ArrayList<MazeCreator> mazeList = new ArrayList<MazeCreator>();

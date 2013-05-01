@@ -3,15 +3,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * A class to create a grid for the corn maze, with the beginning, the ending, and where there is corn and where there is a path.
+ * A class to create a grid for the corn maze, with the beginning,
+ *  the ending, and where there is corn and where there is a path.
+ *  It works essentially by having a simulated person go randomly 
+ *  through a "cornfield," cutting as they go
  * @author Nathan Booth
  * 
  */
 
 public class MazeCreator implements Maze, Serializable{		
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int[][] currentMaze;
 
@@ -81,22 +81,45 @@ public class MazeCreator implements Maze, Serializable{
 					/*
 					 * checking to see if move is valid
 					 */
-					if ((grid[prospieMove[0]+1][prospieMove[1]] == 0 && grid[prospieMove[0]+1][prospieMove[1]-1] == 0
-							&& grid[prospieMove[0]+1][prospieMove[1]+1] == 0 && grid[prospieMove[0]][prospieMove[1]-1] == 0)
-							|| (grid[prospieMove[0]+1][prospieMove[1]] == 0 && grid[prospieMove[0]+1][prospieMove[1]-1] == 0 
-							&& grid[prospieMove[0]][prospieMove[1]+1] == 0 && grid[prospieMove[0]-1][prospieMove[1]-1] == 0)
-							|| (grid[prospieMove[0]+1][prospieMove[1]-1] == 0 && grid[prospieMove[0]][prospieMove[1]-1] == 0 
-							&& grid[prospieMove[0]-1][prospieMove[1]-1] == 0 && grid[prospieMove[0]-1][prospieMove[1]] == 0) 
-							|| (grid[prospieMove[0]][prospieMove[1]-1] == 0 && grid[prospieMove[0]-1][prospieMove[1]-1] == 0 
-							&& grid[prospieMove[0]-1][prospieMove[1]] == 0 && grid[prospieMove[0]-1][prospieMove[1]+1] == 0) 
-							|| (grid[prospieMove[0]-1][prospieMove[1]-1] == 0 && grid[prospieMove[0]-1][prospieMove[1]] == 0 
-							&& grid[prospieMove[0]-1][prospieMove[1]+1] == 0 && grid[prospieMove[0]][prospieMove[1]+1] == 0) 
-							|| (grid[prospieMove[0]-1][prospieMove[1]] == 0 && grid[prospieMove[0]-1][prospieMove[1]+1] == 0 
-							&& grid[prospieMove[0]][prospieMove[1]+1] == 0 && grid[prospieMove[0]+1][prospieMove[1]+1] == 0) 
-							|| (grid[prospieMove[0]-1][prospieMove[1]+1] == 0 && grid[prospieMove[0]][prospieMove[1]+1] == 0 
-							&& grid[prospieMove[0]+1][prospieMove[1]+1] == 0 && grid[prospieMove[0]+1][prospieMove[1]] == 0) 
-							|| (grid[prospieMove[0]][prospieMove[1]+1] == 0 && grid[prospieMove[0]+1][prospieMove[1]+1] == 0 
-							&& grid[prospieMove[0]+1][prospieMove[1]] == 0 && grid[prospieMove[0]+1][prospieMove[1]-1] == 0)) {
+					if ((grid[prospieMove[0]+1][prospieMove[1]] == 0 
+							&& grid[prospieMove[0]+1][prospieMove[1]-1] == 0
+							&& grid[prospieMove[0]+1][prospieMove[1]+1] == 0 
+							&& grid[prospieMove[0]][prospieMove[1]-1] == 0)
+							
+							|| (grid[prospieMove[0]+1][prospieMove[1]] == 0 
+							&& grid[prospieMove[0]+1][prospieMove[1]-1] == 0 
+							&& grid[prospieMove[0]][prospieMove[1]+1] == 0 
+							&& grid[prospieMove[0]-1][prospieMove[1]-1] == 0)
+							
+							|| (grid[prospieMove[0]+1][prospieMove[1]-1] == 0 
+							&& grid[prospieMove[0]][prospieMove[1]-1] == 0 
+							&& grid[prospieMove[0]-1][prospieMove[1]-1] == 0 
+							&& grid[prospieMove[0]-1][prospieMove[1]] == 0) 
+							
+							|| (grid[prospieMove[0]][prospieMove[1]-1] == 0 
+							&& grid[prospieMove[0]-1][prospieMove[1]-1] == 0 
+							&& grid[prospieMove[0]-1][prospieMove[1]] == 0 
+							&& grid[prospieMove[0]-1][prospieMove[1]+1] == 0) 
+							
+							|| (grid[prospieMove[0]-1][prospieMove[1]-1] == 0 
+							&& grid[prospieMove[0]-1][prospieMove[1]] == 0 
+							&& grid[prospieMove[0]-1][prospieMove[1]+1] == 0 
+							&& grid[prospieMove[0]][prospieMove[1]+1] == 0) 
+							
+							|| (grid[prospieMove[0]-1][prospieMove[1]] == 0 
+							&& grid[prospieMove[0]-1][prospieMove[1]+1] == 0 
+							&& grid[prospieMove[0]][prospieMove[1]+1] == 0 
+							&& grid[prospieMove[0]+1][prospieMove[1]+1] == 0) 
+							
+							|| (grid[prospieMove[0]-1][prospieMove[1]+1] == 0 
+							&& grid[prospieMove[0]][prospieMove[1]+1] == 0 
+							&& grid[prospieMove[0]+1][prospieMove[1]+1] == 0 
+							&& grid[prospieMove[0]+1][prospieMove[1]] == 0) 
+							
+							|| (grid[prospieMove[0]][prospieMove[1]+1] == 0 
+							&& grid[prospieMove[0]+1][prospieMove[1]+1] == 0 
+							&& grid[prospieMove[0]+1][prospieMove[1]] == 0 
+							&& grid[prospieMove[0]+1][prospieMove[1]-1] == 0)) {
 					}
 					else {
 						needMove = false;	
@@ -104,6 +127,9 @@ public class MazeCreator implements Maze, Serializable{
 				}
 				count++;
 				if (count > 1000) {
+					/*
+					 * periodically turns around if the way it's going doesn't work
+					 */
 					turnAround = true;
 					break;
 				}
@@ -139,7 +165,11 @@ public class MazeCreator implements Maze, Serializable{
 
 		int i = previousSteps.size() - 1;
 		int[] newEndLocation = endLocation.clone();
-		while (Math.sqrt(Math.pow(newEndLocation[0]-startLocation[0],2) + Math.pow(newEndLocation[1]-startLocation[1], 2)) < size / 2) {
+		/*
+		 * makes sure the end location is far enough away from the start location
+		 */
+		while (Math.sqrt(Math.pow(newEndLocation[0]-startLocation[0],2)
+				+ Math.pow(newEndLocation[1]-startLocation[1], 2)) < size / 2) {
 			newEndLocation = previousSteps.get(i-1).clone();
 			i -= 1;
 			if (i==0) {
