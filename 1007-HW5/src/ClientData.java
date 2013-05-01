@@ -19,9 +19,9 @@ public class ClientData implements Serializable{
 	private int firstGameScore = -1;
 	private int secondGameScore = -1;
 	private int lastGameScore = -1;
-	private int firstOppGameScore;
-	private int secondOppGameScore;
-	private int lastOppGameScore;
+	private int firstOppGameScore = -1;
+	private int secondOppGameScore = -1;
+	private int lastOppGameScore = -1;
 	private Maze testMaze;
 	private MazeCreator testMazeCreator;
 	public ArrayList<MazeCreator> mazeList = new ArrayList<MazeCreator>();

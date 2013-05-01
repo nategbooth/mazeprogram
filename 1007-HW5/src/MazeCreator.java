@@ -37,6 +37,7 @@ public class MazeCreator implements Maze, Serializable{
 		int[] startLocation = {size-1, size/2};
 		int[] currentLocation = startLocation.clone();
 		int[] endLocation = new int[2];
+		
 		for (int y = 0; y < size; y++) {
 			for (int x = 0; x < size; x++) {
 				int value = 1;
@@ -77,7 +78,9 @@ public class MazeCreator implements Maze, Serializable{
 
 				}
 				if (0 < prospieMove[0] && prospieMove[0] < size - 1 && 0 < prospieMove[1] && prospieMove[1] < size - 1) {
-					
+					/*
+					 * checking to see if move is valid
+					 */
 					if ((grid[prospieMove[0]+1][prospieMove[1]] == 0 && grid[prospieMove[0]+1][prospieMove[1]-1] == 0
 							&& grid[prospieMove[0]+1][prospieMove[1]+1] == 0 && grid[prospieMove[0]][prospieMove[1]-1] == 0)
 							|| (grid[prospieMove[0]+1][prospieMove[1]] == 0 && grid[prospieMove[0]+1][prospieMove[1]-1] == 0 
